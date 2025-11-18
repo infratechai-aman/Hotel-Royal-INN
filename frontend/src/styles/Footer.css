@@ -39,10 +39,11 @@
 
 .footer-tagline {
   font-size: 14px;
-  color: var(--gold-500);
+  color: var(--gold-accent);
   font-weight: 500;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   margin: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .footer-description {
