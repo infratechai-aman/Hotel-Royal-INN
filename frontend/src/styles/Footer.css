@@ -48,9 +48,10 @@
 
 .footer-description {
   font-size: 14px;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.8);
-  margin: 8px 0 0;
+  line-height: 1.8;
+  color: var(--cream);
+  margin: 12px 0 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .footer-social {
