@@ -119,28 +119,30 @@
 }
 
 .hero-btn.primary {
-  background: var(--gold-700);
-  color: var(--white);
+  background: linear-gradient(135deg, var(--gold-800) 0%, var(--gold-600) 100%);
+  color: var(--deep-navy);
   border: 2px solid var(--gold-700);
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.4);
 }
 
 .hero-btn.primary:hover {
-  background: var(--gold-800);
-  border-color: var(--gold-800);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
+  background: linear-gradient(135deg, var(--gold-900) 0%, var(--gold-800) 100%);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(212, 175, 55, 0.6);
 }
 
 .hero-btn.secondary {
-  background: transparent;
-  color: var(--white);
-  border: 2px solid var(--white);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--gold-light);
+  border: 2px solid var(--gold-700);
+  backdrop-filter: blur(10px);
 }
 
 .hero-btn.secondary:hover {
-  background: var(--white);
-  color: var(--royal-blue-800);
-  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--gold-accent);
+  color: var(--gold-accent);
+  transform: translateY(-4px);
 }
 
 .hero-nav {
