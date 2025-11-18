@@ -167,50 +167,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Location Map */}
-      <section className="location-section">
-        <div className="container-custom">
-          <div className="location-grid">
-            <div className="location-info">
-              <h2 className="royal-heading">Find Us on Pune-Nashik Highway</h2>
-              <p>Conveniently located at Kurali, we're your perfect stop for rest and refreshment on your journey.</p>
-              
-              <div className="location-details">
-                <div className="location-item">
-                  <MapPin size={24} />
-                  <div>
-                    <strong>Address</strong>
-                    <p>Pune-Nashik Highway, Opposite Highway Industries, Kurali, Maharashtra</p>
-                  </div>
-                </div>
-                <div className="location-item">
-                  <Phone size={24} />
-                  <div>
-                    <strong>Contact</strong>
-                    <p>+91 98765 43210</p>
-                  </div>
-                </div>
-              </div>
-
-              <Link to="/location" className="btn-primary">
-                Get Directions
-              </Link>
-            </div>
-            <div className="location-map">
-              <iframe
-                title="Royal Inn Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.123456789012!2d73.123456!3d19.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA3JzI0LjQiTiA3M8KwMDcnMjQuNCJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Location section removed - available on /location page */}
     </div>
   );
 };
