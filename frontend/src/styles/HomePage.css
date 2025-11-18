@@ -1,5 +1,6 @@
 .homepage {
-  margin-top: 82px;
+  margin-top: 0;
+  background: var(--deep-navy);
 }
 
 /* Hero Section */
