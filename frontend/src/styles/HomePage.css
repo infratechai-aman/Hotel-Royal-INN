@@ -287,8 +287,9 @@
 
 /* Offers Section */
 .offers-section {
-  padding: 100px 0;
-  background: var(--white);
+  padding: 120px 0;
+  background: var(--deep-navy);
+  position: relative;
 }
 
 .offers-grid {
