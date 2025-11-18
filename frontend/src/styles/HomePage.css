@@ -69,30 +69,33 @@
 }
 
 .hero-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 64px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 82px;
   font-weight: 700;
-  color: var(--white);
-  margin-bottom: 16px;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-  letter-spacing: 1px;
+  color: var(--gold-light);
+  margin-bottom: 20px;
+  text-shadow: 0 4px 16px rgba(212, 175, 55, 0.4), 0 2px 4px rgba(0, 0, 0, 0.6);
+  letter-spacing: 2px;
+  line-height: 1.1;
 }
 
 .hero-subtitle {
-  font-size: 28px;
-  color: var(--gold-500);
-  margin-bottom: 12px;
-  font-weight: 300;
-  letter-spacing: 2px;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+  font-size: 32px;
+  color: var(--gold-accent);
+  margin-bottom: 16px;
+  font-weight: 400;
+  font-family: 'Lora', serif;
+  letter-spacing: 3px;
+  text-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
 }
 
 .hero-tagline {
-  font-size: 18px;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 40px;
+  font-size: 17px;
+  color: var(--cream);
+  margin-bottom: 48px;
   font-weight: 400;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .hero-ctas {
