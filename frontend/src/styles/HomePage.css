@@ -6,8 +6,8 @@
 /* Hero Section */
 .hero-section {
   position: relative;
-  height: calc(100vh - 82px);
-  min-height: 600px;
+  height: 100vh;
+  min-height: 700px;
   overflow: hidden;
 }
 
