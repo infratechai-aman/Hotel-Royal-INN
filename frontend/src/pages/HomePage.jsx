@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Star, MapPin, Phone, Calendar } from 'lucide-react';
 import { heroSlides, amenities, reviews, offers, galleryImages } from '../data/mock';
 import '../styles/HomePage.css';
+import '../styles/HomePage_Updates.css';
 
 const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
