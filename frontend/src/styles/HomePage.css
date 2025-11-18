@@ -218,41 +218,54 @@
 }
 
 .highlight-card {
-  background: var(--white);
-  padding: 32px;
+  background: rgba(10, 22, 40, 0.6);
+  backdrop-filter: blur(20px);
+  padding: 40px 32px;
   text-align: center;
-  transition: all 0.3s ease;
-  border: 1px solid var(--gray-300);
+  transition: all 0.4s ease;
+  border: 1px solid rgba(244, 215, 155, 0.15);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .highlight-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(30, 58, 138, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(212, 175, 55, 0.25), 0 0 40px rgba(212, 175, 55, 0.1);
   border-color: var(--gold-700);
+  background: rgba(10, 22, 40, 0.8);
 }
 
 .highlight-icon {
-  width: 70px;
-  height: 70px;
-  margin: 0 auto 20px;
-  display: flex;
-  align-items: center;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  display: flex;\n  align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--royal-blue-800) 0%, var(--royal-blue-600) 100%);
-  color: var(--gold-500);
+  background: linear-gradient(135deg, var(--gold-800) 0%, var(--gold-600) 100%);
+  color: var(--deep-navy);
+  border-radius: 50%;
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
+  transition: all 0.3s ease;
+}
+
+.highlight-card:hover .highlight-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 12px 32px rgba(212, 175, 55, 0.6);
 }
 
 .highlight-card h3 {
-  font-size: 18px;
-  margin-bottom: 8px;
-  color: var(--royal-blue-800);
-  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: var(--gold-light);
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
 }
 
 .highlight-card p {
   font-size: 14px;
-  color: var(--gray-600);
-  line-height: 1.6;
+  color: var(--cream);
+  line-height: 1.7;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* Section Header */
