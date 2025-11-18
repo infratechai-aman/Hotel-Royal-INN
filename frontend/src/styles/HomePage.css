@@ -204,8 +204,11 @@
 
 /* Highlights Section */
 .highlights-section {
-  padding: 80px 0;
-  background: var(--gray-100);
+  padding: 100px 0;
+  background: var(--rich-navy);
+  position: relative;
+  clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+  margin-top: -80px;
 }
 
 .highlights-grid {
