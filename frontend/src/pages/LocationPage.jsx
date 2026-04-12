@@ -1,134 +1,64 @@
-import React from 'react';
-import { MapPin, Navigation, Phone, Car } from 'lucide-react';
-import { contactInfo, nearbyPlaces } from '../data/mock';
-import '../styles/LocationPage.css';
-
+import React, { useEffect } from 'react'; import { MapPin, Navigation, Phone, Car } from 'lucide-react'; import { contactInfo, nearbyPlaces } from '../data/mock'; import { initScrollReveal } from '../hooks/useAnimations'; import '../styles/LocationPage.css';
 const LocationPage = () => {
-  const openInGoogleMaps = () => {
-    window.open('https://www.google.com/maps/search/Pune-Nashik+Highway+Kurali', '_blank');
-  };
-
+  useEffect(() => { const t = setTimeout(() => initScrollReveal(), 100); return () => clearTimeout(t); }, []);
+  const openInGoogleMaps = () => window.open('https://www.google.com/maps/search/Pune-Nashik+Highway+Kurali', '_blank');
   return (
     <div className="location-page">
-      <section className="location-hero">
-        <div className="location-hero-overlay"></div>
-        <div className="location-hero-content">
-          <h1 className="royal-heading">Location & Directions</h1>
-          <p>Find us on the Pune-Nashik Highway</p>
-        </div>
+      <section className="page-hero">
+        <div className="page-hero-bg" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920')" }}></div>
+        <div className="page-hero-overlay"></div>
+        <div className="page-hero-content"><h1 className="royal-heading">Location & Directions</h1><p>Find us on the Pune-Nashik Highway</p></div>
       </section>
-
-      <section className="location-map-section">
+      <section style={{ padding: 'var(--section-padding) 0' }}>
         <div className="container-custom">
-          <div className="map-container">
-            <iframe
-              title="Royal Inn Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.123456789012!2d73.123456!3d19.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA3JzI0LjQiTiA3M8KwMDcnMjQuNCJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
-              width="100%"
-              height="600"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-            <button className="open-maps-btn" onClick={openInGoogleMaps}>
-              <Navigation size={20} />
-              Open in Google Maps
-            </button>
+          <div className="map-wrapper reveal">
+            <iframe title="Royal Inn Location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.123456789012!2d73.123456!3d19.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA3JzI0LjQiTiA3M8KwMDcnMjQuNCJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin" width="100%" height="500" style={{ border: 0, borderRadius: '16px' }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+            <button className="map-btn btn-gold" onClick={openInGoogleMaps}><Navigation size={16} /> Open in Google Maps</button>
           </div>
         </div>
       </section>
-
-      <section className="address-section">
+      <section style={{ padding: 'var(--section-padding) 0', background: 'rgba(0,0,0,0.15)' }}>
         <div className="container-custom">
-          <div className="address-grid">
-            <div className="address-card">
-              <div className="address-icon">
-                <MapPin size={40} />
+          <div className="address-grid stagger-children">
+            {[
+              { icon: <MapPin size={32} />, title: 'Our Address', content: contactInfo.address },
+              { icon: <Phone size={32} />, title: 'Contact', content: `Reception: ${contactInfo.phone}\nRestaurant: ${contactInfo.restaurantPhone}` },
+              { icon: <Car size={32} />, title: 'Easy Access', content: 'Located on main highway\nAmple free parking' }
+            ].map((item, i) => (
+              <div key={i} className="address-card glass-card" style={{ padding: '40px', textAlign: 'center' }}>
+                <div className="address-icon">{item.icon}</div>
+                <h3>{item.title}</h3>
+                <p style={{ whiteSpace: 'pre-line' }}>{item.content}</p>
               </div>
-              <h3>Our Address</h3>
-              <p>{contactInfo.address}</p>
-            </div>
-
-            <div className="address-card">
-              <div className="address-icon">
-                <Phone size={40} />
-              </div>
-              <h3>Contact Numbers</h3>
-              <p><strong>Reception:</strong> {contactInfo.phone}</p>
-              <p><strong>Restaurant:</strong> {contactInfo.restaurantPhone}</p>
-            </div>
-
-            <div className="address-card">
-              <div className="address-icon">
-                <Car size={40} />
-              </div>
-              <h3>Easy Access</h3>
-              <p>Located on main highway</p>
-              <p>Ample free parking available</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
-
-      <section className="directions-section">
+      <section style={{ padding: 'var(--section-padding) 0' }}>
         <div className="container-custom">
-          <div className="section-header">
-            <h2 className="royal-heading">Driving Directions</h2>
-            <p className="section-subtitle">Easy to find, easy to reach</p>
-          </div>
-
-          <div className="directions-grid">
-            <div className="direction-card">
-              <div className="direction-header">
-                <h3>From Pune</h3>
-                <span className="distance">~85 km</span>
+          <div className="section-header reveal"><h2 className="royal-heading">Driving Directions</h2><p className="section-subtitle">Easy to find, easy to reach</p></div>
+          <div className="directions-grid stagger-children">
+            {[
+              { from: 'From Pune', dist: '~85 km', steps: ['Take NH 60 towards Nashik', 'Continue on Pune-Nashik Highway', 'Pass through Chakan and Alephata', 'Royal Inn at Kurali on your left'], time: '~1.5 hours' },
+              { from: 'From Nashik', dist: '~35 km', steps: ['Take NH 60 towards Pune', 'Continue on Pune-Nashik Highway', 'Pass through Sangamner', 'Royal Inn at Kurali on your right'], time: '~45 minutes' }
+            ].map((dir, i) => (
+              <div key={i} className="direction-card glass-card" style={{ padding: '36px' }}>
+                <div className="direction-header"><h3>{dir.from}</h3><span className="direction-dist">{dir.dist}</span></div>
+                <ol className="direction-steps">{dir.steps.map((s, j) => <li key={j}>{s}</li>)}</ol>
+                <p className="direction-time">Travel time: {dir.time}</p>
               </div>
-              <ol>
-                <li>Take NH 60 towards Nashik from Pune</li>
-                <li>Continue on Pune-Nashik Highway</li>
-                <li>Pass through Chakan and Alephata</li>
-                <li>Royal Inn is located at Kurali on your left</li>
-                <li>Look for our royal blue signboard</li>
-              </ol>
-              <p className="travel-time">Approximate travel time: 1.5 hours</p>
-            </div>
-
-            <div className="direction-card">
-              <div className="direction-header">
-                <h3>From Nashik</h3>
-                <span className="distance">~35 km</span>
-              </div>
-              <ol>
-                <li>Take NH 60 towards Pune from Nashik</li>
-                <li>Continue on Pune-Nashik Highway</li>
-                <li>Pass through Sangamner</li>
-                <li>Royal Inn is located at Kurali on your right</li>
-                <li>Look for our royal blue signboard</li>
-              </ol>
-              <p className="travel-time">Approximate travel time: 45 minutes</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
-
-      <section className="nearby-section">
+      <section style={{ padding: 'var(--section-padding) 0', background: 'rgba(0,0,0,0.15)' }}>
         <div className="container-custom">
-          <div className="section-header">
-            <h2 className="royal-heading">Nearby Landmarks</h2>
-            <p className="section-subtitle">Points of interest around Royal Inn</p>
-          </div>
-
-          <div className="nearby-grid">
+          <div className="section-header reveal"><h2 className="royal-heading">Nearby Landmarks</h2><p className="section-subtitle">Points of interest</p></div>
+          <div className="nearby-grid stagger-children">
             {nearbyPlaces.map((place, index) => (
-              <div key={index} className="nearby-card">
-                <div className="nearby-icon">
-                  <MapPin size={24} />
-                </div>
-                <div className="nearby-info">
-                  <h4>{place.name}</h4>
-                  <span className="nearby-distance">{place.distance}</span>
-                </div>
+              <div key={index} className="nearby-item glass-card" style={{ padding: '20px 24px', display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <MapPin size={20} style={{ color: 'var(--gold-500)', flexShrink: 0 }} />
+                <div><h4 style={{ fontSize: '0.95rem', color: 'var(--gold-200)', marginBottom: '2px' }}>{place.name}</h4><span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>{place.distance}</span></div>
               </div>
             ))}
           </div>
@@ -137,5 +67,4 @@ const LocationPage = () => {
     </div>
   );
 };
-
 export default LocationPage;

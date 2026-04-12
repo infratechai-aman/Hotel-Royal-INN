@@ -1,91 +1,177 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, Star, MapPin, Phone, Calendar } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Star, Calendar, Users, Award, Clock, ArrowRight } from 'lucide-react';
 import { heroSlides, amenities, reviews, offers, galleryImages } from '../data/mock';
+import { useCountUp, initScrollReveal } from '../hooks/useAnimations';
 import '../styles/HomePage.css';
-import '../styles/HomePage_Updates.css';
 
 const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [parallaxOffset, setParallaxOffset] = useState(0);
+  const heroRef = useRef(null);
+
+  // Count-up stats
+  const [guestRef, guestCount] = useCountUp(500, 2000);
+  const [roomRef, roomCount] = useCountUp(50, 1800);
+  const [ratingRef, ratingCount] = useCountUp(48, 1500);
+  const [serviceRef, serviceCount] = useCountUp(24, 1200);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-  };
+  // Parallax
+  useEffect(() => {
+    const handleScroll = () => {
+      setParallaxOffset(window.scrollY * 0.4);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
-  };
+  // Initialize scroll reveal
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      initScrollReveal();
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
 
   return (
     <div className="homepage">
-      {/* Hero Section */}
-      <section className="hero-section">
-        <div className="hero-slider">
+      {/* ═══════ CINEMATIC HERO ═══════ */}
+      <section className="hero" ref={heroRef}>
+        {/* Video Background */}
+        <div className="hero__video-container">
+          <video
+            className="hero__video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={heroSlides[0].image}
+          >
+            <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4" type="video/mp4" />
+          </video>
+          <div className="hero__video-overlay"></div>
+        </div>
+
+        {/* Slide Images (stacked behind video for fallback) */}
+        <div className="hero__slides">
           {heroSlides.map((slide, index) => (
             <div
               key={slide.id}
-              className={`hero-slide ${index === currentSlide ? 'active' : ''}`}
-              style={{ backgroundImage: `url(${slide.image})` }}
-            >
-              <div className="hero-overlay"></div>
-            </div>
+              className={`hero__slide ${index === currentSlide ? 'hero__slide--active' : ''}`}
+              style={{
+                backgroundImage: `url(${slide.image})`,
+                transform: `translateY(${parallaxOffset * 0.3}px)`
+              }}
+            />
           ))}
         </div>
-        
-        <div className="hero-content">
-          <h1 className="hero-title">{heroSlides[currentSlide].title}</h1>
-          <p className="hero-subtitle">{heroSlides[currentSlide].subtitle}</p>
-          <p className="hero-tagline">Comfort. Taste. Convenience on the Pune-Nashik Highway.</p>
-          
-          <div className="hero-ctas">
-            <Link to="/booking" className="hero-btn primary">
-              <Calendar size={20} />
-              Book a Room
+
+        {/* Hero Content */}
+        <div className="hero__content">
+          <div className="hero__badge">
+            <Star size={14} fill="#d4af37" color="#d4af37" />
+            <span>Premium Luxury Hotel</span>
+            <Star size={14} fill="#d4af37" color="#d4af37" />
+          </div>
+
+          <h1 className="hero__title">
+            <span className="hero__title-line">{heroSlides[currentSlide].title}</span>
+          </h1>
+          <p className="hero__subtitle">{heroSlides[currentSlide].subtitle}</p>
+          <p className="hero__tagline">Comfort · Taste · Convenience — Pune-Nashik Highway</p>
+
+          <div className="hero__ctas">
+            <Link to="/booking" className="btn-gold hero__btn">
+              <Calendar size={18} />
+              Book Your Stay
             </Link>
-            <Link to="/restobar" className="hero-btn secondary">
+            <Link to="/restobar" className="btn-outline hero__btn">
               Reserve Table
-            </Link>
-            <Link to="/restobar" className="hero-btn secondary">
-              View Menu
             </Link>
           </div>
         </div>
 
-        <button className="hero-nav prev" onClick={prevSlide}>
-          <ChevronLeft size={32} />
+        {/* Slide Navigation */}
+        <button className="hero__nav hero__nav--prev" onClick={prevSlide} aria-label="Previous slide">
+          <ChevronLeft size={28} />
         </button>
-        <button className="hero-nav next" onClick={nextSlide}>
-          <ChevronRight size={32} />
+        <button className="hero__nav hero__nav--next" onClick={nextSlide} aria-label="Next slide">
+          <ChevronRight size={28} />
         </button>
 
-        <div className="hero-indicators">
+        {/* Slide Indicators */}
+        <div className="hero__indicators">
           {heroSlides.map((_, index) => (
             <button
               key={index}
-              className={`indicator ${index === currentSlide ? 'active' : ''}`}
+              className={`hero__indicator ${index === currentSlide ? 'hero__indicator--active' : ''}`}
               onClick={() => setCurrentSlide(index)}
+              aria-label={`Slide ${index + 1}`}
             />
           ))}
         </div>
+
+        {/* Scroll Indicator */}
+        <div className="hero__scroll-indicator">
+          <div className="hero__scroll-line"></div>
+          <span>Scroll</span>
+        </div>
       </section>
 
-      {/* Quick Highlights */}
-      <section className="highlights-section">
+      {/* ═══════ STATS COUNTER ═══════ */}
+      <section className="stats">
+        <div className="stats__container container-custom">
+          <div className="stats__item" ref={guestRef}>
+            <Users size={28} className="stats__icon" />
+            <span className="stats__number">{guestCount}+</span>
+            <span className="stats__label">Happy Guests</span>
+          </div>
+          <div className="stats__divider"></div>
+          <div className="stats__item" ref={roomRef}>
+            <Award size={28} className="stats__icon" />
+            <span className="stats__number">{roomCount}+</span>
+            <span className="stats__label">Luxury Rooms</span>
+          </div>
+          <div className="stats__divider"></div>
+          <div className="stats__item" ref={ratingRef}>
+            <Star size={28} className="stats__icon" />
+            <span className="stats__number">{(ratingCount / 10).toFixed(1)}★</span>
+            <span className="stats__label">Guest Rating</span>
+          </div>
+          <div className="stats__divider"></div>
+          <div className="stats__item" ref={serviceRef}>
+            <Clock size={28} className="stats__icon" />
+            <span className="stats__number">{serviceCount}/7</span>
+            <span className="stats__label">Service</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ AMENITIES / HIGHLIGHTS ═══════ */}
+      <section className="highlights" style={{ padding: 'var(--section-padding) 0' }}>
         <div className="container-custom">
-          <div className="highlights-grid">
+          <div className="section-header reveal">
+            <h2 className="royal-heading">The Royal Experience</h2>
+            <p className="section-subtitle">World-class amenities for discerning guests</p>
+          </div>
+
+          <div className="highlights__grid stagger-children">
             {amenities.slice(0, 6).map((amenity, index) => {
               const IconComponent = require('lucide-react')[amenity.icon];
               return (
-                <div key={index} className="highlight-card">
-                  <div className="highlight-icon">
-                    <IconComponent size={28} />
+                <div key={index} className="highlights__card glass-card">
+                  <div className="highlights__icon">
+                    <IconComponent size={32} />
                   </div>
                   <h3>{amenity.title}</h3>
                   <p>{amenity.description}</p>
@@ -96,70 +182,95 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Featured Offers */}
-      <section className="offers-section">
+      {/* ═══════ PARALLAX DIVIDER ═══════ */}
+      <section className="parallax-divider">
+        <div
+          className="parallax-divider__bg"
+          style={{ transform: `translateY(${parallaxOffset * 0.15}px)` }}
+        ></div>
+        <div className="parallax-divider__overlay"></div>
+        <div className="parallax-divider__content reveal">
+          <h2 className="royal-heading">A Destination, Not Just a Stop</h2>
+          <p>Strategically located on the Pune-Nashik Highway at Kurali</p>
+          <Link to="/rooms" className="btn-outline" style={{ marginTop: '24px' }}>
+            Explore Rooms <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
+
+      {/* ═══════ SPECIAL OFFERS ═══════ */}
+      <section className="offers" style={{ padding: 'var(--section-padding) 0' }}>
         <div className="container-custom">
-          <div className="section-header">
-            <h2 className="royal-heading">Special Offers</h2>
-            <p className="section-subtitle">Exclusive deals for our valued guests</p>
+          <div className="section-header reveal">
+            <h2 className="royal-heading">Exclusive Offers</h2>
+            <p className="section-subtitle">Curated deals for our valued guests</p>
           </div>
-          <div className="offers-grid">
+
+          <div className="offers__grid stagger-children">
             {offers.map((offer) => (
-              <div key={offer.id} className="offer-card">
-                <div className="offer-badge">{offer.discount}</div>
+              <div key={offer.id} className="offers__card glass-card">
+                <div className="offers__badge">{offer.discount}</div>
                 <h3>{offer.title}</h3>
                 <p>{offer.description}</p>
-                <div className="offer-validity">Valid till: {offer.validTill}</div>
+                <div className="offers__validity">Valid: {offer.validTill}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Gallery Preview */}
-      <section className="gallery-preview-section">
+      {/* ═══════ GALLERY PREVIEW ═══════ */}
+      <section className="gallery-preview" style={{ padding: 'var(--section-padding) 0' }}>
         <div className="container-custom">
-          <div className="section-header">
-            <h2 className="royal-heading">Gallery</h2>
-            <p className="section-subtitle">A glimpse of Royal Inn experience</p>
+          <div className="section-header reveal">
+            <h2 className="royal-heading">Visual Journey</h2>
+            <p className="section-subtitle">A glimpse of the Royal Inn experience</p>
           </div>
-          <div className="gallery-preview-grid">
+
+          <div className="gallery-preview__grid stagger-children">
             {galleryImages.slice(0, 6).map((image) => (
-              <div key={image.id} className="gallery-preview-item">
-                <img src={image.url} alt={image.title} />
-                <div className="gallery-preview-overlay">
+              <div key={image.id} className="gallery-preview__item">
+                <img src={image.url} alt={image.title} loading="lazy" />
+                <div className="gallery-preview__overlay">
                   <span>{image.title}</span>
                 </div>
               </div>
             ))}
           </div>
-          <div className="text-center" style={{ marginTop: '40px' }}>
-            <Link to="/gallery" className="btn-gold">
-              View Full Gallery
+
+          <div className="gallery-preview__cta reveal">
+            <Link to="/gallery" className="btn-outline">
+              View Full Gallery <ArrowRight size={16} />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Customer Reviews */}
-      <section className="reviews-section">
+      {/* ═══════ REVIEWS ═══════ */}
+      <section className="reviews" style={{ padding: 'var(--section-padding) 0' }}>
         <div className="container-custom">
-          <div className="section-header">
-            <h2 className="royal-heading">What Our Guests Say</h2>
-            <p className="section-subtitle">Testimonials from satisfied travelers</p>
+          <div className="section-header reveal">
+            <h2 className="royal-heading">Guest Testimonials</h2>
+            <p className="section-subtitle">Words from our cherished visitors</p>
           </div>
-          <div className="reviews-grid">
+
+          <div className="reviews__grid stagger-children">
             {reviews.map((review) => (
-              <div key={review.id} className="review-card">
-                <div className="review-stars">
+              <div key={review.id} className="reviews__card glass-card">
+                <div className="reviews__stars">
                   {[...Array(review.rating)].map((_, i) => (
-                    <Star key={i} size={18} fill="var(--gold-700)" color="var(--gold-700)" />
+                    <Star key={i} size={16} fill="#d4af37" color="#d4af37" />
                   ))}
                 </div>
-                <p className="review-comment">"{review.comment}"</p>
-                <div className="review-author">
-                  <strong>{review.name}</strong>
-                  <span>{review.date}</span>
+                <p className="reviews__quote">"{review.comment}"</p>
+                <div className="reviews__author">
+                  <div className="reviews__avatar">
+                    {review.name.charAt(0)}
+                  </div>
+                  <div>
+                    <strong>{review.name}</strong>
+                    <span>{review.date}</span>
+                  </div>
                 </div>
               </div>
             ))}
@@ -167,7 +278,16 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Location section removed - available on /location page */}
+      {/* ═══════ FLOATING BOOKING CTA ═══════ */}
+      <div className="floating-cta">
+        <div className="floating-cta__inner">
+          <span className="floating-cta__text">Ready for a royal experience?</span>
+          <Link to="/booking" className="btn-gold floating-cta__btn">
+            <Calendar size={16} />
+            Book Now
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

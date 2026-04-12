@@ -3,39 +3,39 @@
 export const heroSlides = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1600",
+    image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1920&q=85",
     title: "Luxury Rooms & Suites",
     subtitle: "Experience Royal Comfort"
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600",
+    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=85",
     title: "Fine Dining & Bar",
     subtitle: "Exquisite Culinary Experience"
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1600",
+    image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1920&q=85",
     title: "Premium Lounge",
     subtitle: "Unwind in Elegance"
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600",
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=85",
     title: "Highway Convenience",
     subtitle: "Your Perfect Stop on Pune-Nashik Highway"
   }
 ];
 
 export const amenities = [
-  { icon: "Clock", title: "24/7 Front Desk", description: "Round-the-clock service" },
-  { icon: "Car", title: "Free Parking", description: "Ample parking space" },
-  { icon: "MapPin", title: "Highway Access", description: "Easy connectivity" },
-  { icon: "Shield", title: "CCTV & Security", description: "Your safety matters" },
-  { icon: "Users", title: "Family Friendly", description: "Comfortable for all" },
-  { icon: "Wine", title: "Bar & Restaurant", description: "Fine dining experience" },
-  { icon: "Droplet", title: "Hot Water 24/7", description: "All-day comfort" },
-  { icon: "Wifi", title: "High-Speed WiFi", description: "Stay connected" },
+  { icon: "Clock", title: "24/7 Front Desk", description: "Round-the-clock concierge service" },
+  { icon: "Car", title: "Free Parking", description: "Secure, ample parking space" },
+  { icon: "MapPin", title: "Highway Access", description: "Prime highway connectivity" },
+  { icon: "Shield", title: "CCTV & Security", description: "24/7 surveillance & safety" },
+  { icon: "Users", title: "Family Friendly", description: "Comfortable for all ages" },
+  { icon: "Wine", title: "Bar & Restaurant", description: "Fine dining & premium spirits" },
+  { icon: "Droplet", title: "Hot Water 24/7", description: "All-day comfort guaranteed" },
+  { icon: "Wifi", title: "High-Speed WiFi", description: "Stay seamlessly connected" },
   { icon: "UtensilsCrossed", title: "Room Service", description: "At your convenience" }
 ];
 
@@ -44,7 +44,7 @@ export const rooms = [
     id: 1,
     category: "Standard Room",
     price: "₹1,500 - ₹2,000",
-    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
+    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
     features: ["Queen Size Bed", "AC", "Hot Water", "LED TV", "WiFi", "Attached Bathroom"],
     description: "Comfortable rooms perfect for solo travelers and couples"
   },
@@ -52,7 +52,7 @@ export const rooms = [
     id: 2,
     category: "Deluxe Room",
     price: "₹2,500 - ₹3,500",
-    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
+    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80",
     features: ["King Size Bed", "Premium AC", "Mini Bar", "Smart TV", "Work Desk", "Premium Toiletries"],
     description: "Spacious rooms with premium amenities for discerning guests"
   },
@@ -60,9 +60,9 @@ export const rooms = [
     id: 3,
     category: "Family Suite",
     price: "₹4,000 - ₹5,500",
-    image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800",
+    image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80",
     features: ["2 Bedrooms", "Living Area", "Kitchenette", "2 Bathrooms", "Dining Space", "Balcony"],
-    description: "Perfect for families seeking space and comfort"
+    description: "Perfect for families seeking space and luxury"
   }
 ];
 
@@ -162,7 +162,7 @@ export const offers = [
   {
     id: 2,
     title: "Happy Hours",
-    description: "Buy 1 Get 1 on selected cocktails and drinks",
+    description: "Buy 1 Get 1 on selected cocktails and premium drinks",
     discount: "BOGO",
     validTill: "Daily 5 PM - 7 PM"
   },
@@ -176,54 +176,14 @@ export const offers = [
 ];
 
 export const galleryImages = [
-  {
-    id: 1,
-    category: "rooms",
-    url: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600",
-    title: "Deluxe Room"
-  },
-  {
-    id: 2,
-    category: "rooms",
-    url: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600",
-    title: "Premium Suite"
-  },
-  {
-    id: 3,
-    category: "food",
-    url: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600",
-    title: "Butter Chicken"
-  },
-  {
-    id: 4,
-    category: "food",
-    url: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600",
-    title: "Gourmet Pizza"
-  },
-  {
-    id: 5,
-    category: "bar",
-    url: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=600",
-    title: "Premium Bar"
-  },
-  {
-    id: 6,
-    category: "bar",
-    url: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600",
-    title: "Cocktails"
-  },
-  {
-    id: 7,
-    category: "property",
-    url: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600",
-    title: "Hotel Exterior"
-  },
-  {
-    id: 8,
-    category: "property",
-    url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600",
-    title: "Reception Area"
-  }
+  { id: 1, category: "rooms", url: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80", title: "Deluxe Room" },
+  { id: 2, category: "rooms", url: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80", title: "Premium Suite" },
+  { id: 3, category: "food", url: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&q=80", title: "Butter Chicken" },
+  { id: 4, category: "food", url: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80", title: "Gourmet Pizza" },
+  { id: 5, category: "bar", url: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80", title: "Premium Bar" },
+  { id: 6, category: "bar", url: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&q=80", title: "Cocktails" },
+  { id: 7, category: "property", url: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80", title: "Hotel Exterior" },
+  { id: 8, category: "property", url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80", title: "Reception Area" }
 ];
 
 export const events = [
@@ -233,7 +193,7 @@ export const events = [
     description: "Enjoy live music every Friday evening from 8 PM onwards",
     date: "Every Friday",
     time: "8:00 PM - 11:00 PM",
-    image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600"
+    image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&q=80"
   },
   {
     id: 2,
@@ -241,7 +201,7 @@ export const events = [
     description: "Dance to the best tracks with our resident DJ",
     date: "Saturday & Sunday",
     time: "9:00 PM - 1:00 AM",
-    image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600"
+    image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&q=80"
   },
   {
     id: 3,
@@ -249,17 +209,17 @@ export const events = [
     description: "Special buffet spreads on festivals and special occasions",
     date: "On Special Occasions",
     time: "12:00 PM - 11:00 PM",
-    image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600"
+    image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80"
   }
 ];
 
 export const blogPosts = [
   {
     id: 1,
-    title: "New Year Celebration 2025 - Book Your Table Now!",
+    title: "New Year Celebration 2025 — Book Your Table Now!",
     excerpt: "Join us for an unforgettable New Year's Eve with live music, DJ, and special buffet.",
     date: "15th Dec 2024",
-    image: "https://images.unsplash.com/photo-1467810563316-b5476525c0f9?w=600",
+    image: "https://images.unsplash.com/photo-1467810563316-b5476525c0f9?w=800&q=80",
     category: "Events"
   },
   {
@@ -267,15 +227,15 @@ export const blogPosts = [
     title: "Highway Travel Tips: Making Your Journey Comfortable",
     excerpt: "Essential tips for travelers on the Pune-Nashik highway. Plan your stops, stay safe, and enjoy the journey.",
     date: "10th Dec 2024",
-    image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600",
+    image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80",
     category: "Travel Tips"
   },
   {
     id: 3,
-    title: "Introducing Our New Menu - A Culinary Journey",
+    title: "Introducing Our New Menu — A Culinary Journey",
     excerpt: "We've revamped our menu with exciting new dishes. Come taste the difference!",
     date: "5th Dec 2024",
-    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600",
+    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
     category: "Announcements"
   }
 ];

@@ -1,53 +1,37 @@
-import React from 'react';
-import { Calendar, Tag } from 'lucide-react';
-import { blogPosts } from '../data/mock';
-import '../styles/BlogPage.css';
-
+import React, { useEffect } from 'react'; import { Calendar, Tag } from 'lucide-react'; import { blogPosts } from '../data/mock'; import { initScrollReveal } from '../hooks/useAnimations'; import '../styles/BlogPage.css';
 const BlogPage = () => {
+  useEffect(() => { const t = setTimeout(() => initScrollReveal(), 100); return () => clearTimeout(t); }, []);
   return (
     <div className="blog-page">
-      <section className="blog-hero">
-        <div className="blog-hero-overlay"></div>
-        <div className="blog-hero-content">
-          <h1 className="royal-heading">News & Updates</h1>
-          <p>Stay updated with latest events and announcements</p>
-        </div>
+      <section className="page-hero">
+        <div className="page-hero-bg" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1467810563316-b5476525c0f9?w=1920')" }}></div>
+        <div className="page-hero-overlay"></div>
+        <div className="page-hero-content"><h1 className="royal-heading">News & Updates</h1><p>Stay updated with latest events and announcements</p></div>
       </section>
-
-      <section className="blog-section">
+      <section style={{ padding: 'var(--section-padding) 0' }}>
         <div className="container-custom">
-          <div className="blog-grid">
+          <div className="blog-grid stagger-children">
             {blogPosts.map((post) => (
-              <article key={post.id} className="blog-card">
-                <div className="blog-image">
-                  <img src={post.image} alt={post.title} />
-                  <div className="blog-category">
-                    <Tag size={14} />
-                    {post.category}
-                  </div>
-                </div>
-                <div className="blog-content">
-                  <div className="blog-meta">
-                    <Calendar size={16} />
-                    <span>{post.date}</span>
-                  </div>
+              <article key={post.id} className="blog-card glass-card" style={{ overflow: 'hidden' }}>
+                <div className="blog-card__image"><img src={post.image} alt={post.title} loading="lazy" /><div className="blog-card__category"><Tag size={12} /> {post.category}</div></div>
+                <div className="blog-card__content">
+                  <div className="blog-card__meta"><Calendar size={14} /><span>{post.date}</span></div>
                   <h2>{post.title}</h2>
                   <p>{post.excerpt}</p>
-                  <button className="read-more-btn">Read More</button>
+                  <button className="blog-card__link">Read More →</button>
                 </div>
               </article>
             ))}
           </div>
         </div>
       </section>
-
-      <section className="newsletter-section">
+      <section style={{ padding: 'var(--section-padding) 0' }}>
         <div className="container-custom">
-          <div className="newsletter-box">
-            <h2 className="royal-heading">Subscribe to Our Newsletter</h2>
-            <p>Get the latest updates on events, offers, and news delivered to your inbox</p>
-            <form className="newsletter-form">
-              <input type="email" placeholder="Enter your email address" required />
+          <div className="newsletter-box glass-card-heavy reveal" style={{ padding: '60px', textAlign: 'center', maxWidth: '700px', margin: '0 auto' }}>
+            <h2 className="royal-heading" style={{ marginBottom: '12px' }}>Subscribe to Our Newsletter</h2>
+            <p style={{ color: 'var(--text-secondary)', marginBottom: '32px' }}>Get the latest updates on events, offers, and news</p>
+            <form className="newsletter-form" style={{ display: 'flex', gap: '12px', maxWidth: '500px', margin: '0 auto' }}>
+              <input type="email" placeholder="Enter your email address" required style={{ flex: 1, padding: '14px 18px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(212,175,55,0.2)', borderRadius: '4px', color: 'var(--text-primary)', fontFamily: 'Inter, sans-serif', fontSize: '0.95rem', outline: 'none' }} />
               <button type="submit" className="btn-gold">Subscribe</button>
             </form>
           </div>
@@ -56,5 +40,4 @@ const BlogPage = () => {
     </div>
   );
 };
-
 export default BlogPage;
