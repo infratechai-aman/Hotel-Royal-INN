@@ -78,12 +78,6 @@ const HomePage = () => {
 
         {/* Hero Content */}
         <div className="hero__content">
-          <div className="hero__badge">
-            <Star size={14} fill="#d4af37" color="#d4af37" />
-            <span>Premium Luxury Hotel</span>
-            <Star size={14} fill="#d4af37" color="#d4af37" />
-          </div>
-
           <h1 className="hero__title">
             <span className="hero__title-line">{heroSlides[currentSlide].title}</span>
           </h1>
