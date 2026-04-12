@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
+import { contactInfo } from '../data/mock';
 import '../styles/Header.css';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const contactPhone = contactInfo.phone;
+  const contactHref = `tel:${contactInfo.phone.replace(/\s+/g, '')}`;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,9 +74,9 @@ const Header = () => {
 
           {/* Actions */}
           <div className="header__actions">
-            <a href="tel:+919876543210" className="header__phone">
+            <a href={contactHref} className="header__phone">
               <Phone size={16} />
-              <span>+91 98765 43210</span>
+              <span>{contactPhone}</span>
             </a>
             <Link to="/booking" className="header__book-btn">
               Book Now
@@ -96,10 +99,24 @@ const Header = () => {
         <div className="mobile-menu__backdrop" onClick={() => setIsMobileMenuOpen(false)} />
         <div className="mobile-menu__panel">
           <div className="mobile-menu__header">
-            <div className="header__logo-text">
-              <span className="header__logo-name">ROYAL INN</span>
-              <span className="header__logo-tagline">LUXURY HOTEL</span>
-            </div>
+            <Link to="/" className="header__logo" onClick={() => setIsMobileMenuOpen(false)}>
+              <div className="header__logo-icon">
+                <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+                  <rect x="2" y="2" width="36" height="36" rx="4" stroke="url(#gold-grad-mob)" strokeWidth="2" fill="none"/>
+                  <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="url(#gold-grad-mob)" fontFamily="Playfair Display" fontSize="18" fontWeight="700">R</text>
+                  <defs>
+                    <linearGradient id="gold-grad-mob" x1="0" y1="0" x2="40" y2="40">
+                      <stop offset="0%" stopColor="#f7c131"/>
+                      <stop offset="100%" stopColor="#d4af37"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <div className="header__logo-text">
+                <span className="header__logo-name" style={{ fontSize: '1.1rem' }}>ROYAL INN</span>
+                <span className="header__logo-tagline" style={{ fontSize: '0.45rem' }}>LUXURY HOTEL</span>
+              </div>
+            </Link>
           </div>
           <nav className="mobile-menu__nav">
             {navLinks.map((link, index) => (
@@ -118,9 +135,9 @@ const Header = () => {
             <Link to="/booking" className="btn-gold" onClick={() => setIsMobileMenuOpen(false)}>
               Book Now
             </Link>
-            <a href="tel:+919876543210" className="mobile-menu__phone">
+            <a href={contactHref} className="mobile-menu__phone">
               <Phone size={16} />
-              +91 98765 43210
+              {contactPhone}
             </a>
           </div>
         </div>
