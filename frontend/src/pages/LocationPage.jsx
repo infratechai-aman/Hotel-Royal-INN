@@ -19,16 +19,20 @@ const LocationPage = () => {
       </section>
       <section style={{ padding: 'var(--section-padding) 0', background: 'rgba(0,0,0,0.15)' }}>
         <div className="container-custom">
-          <div className="address-grid stagger-children">
+          <div className="bento stagger-children" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
             {[
-              { icon: <MapPin size={32} />, title: 'Our Address', content: contactInfo.address },
-              { icon: <Phone size={32} />, title: 'Contact', content: `Reception: ${contactInfo.phone}\nRestaurant: ${contactInfo.restaurantPhone}` },
-              { icon: <Car size={32} />, title: 'Easy Access', content: 'Located on main highway\nAmple free parking' }
+              { icon: <MapPin size={24} />, title: 'Our Address', content: contactInfo.address },
+              { icon: <Phone size={24} />, title: 'Contact', content: `Reception: ${contactInfo.phone}\nRestaurant: ${contactInfo.restaurantPhone}` },
+              { icon: <Car size={24} />, title: 'Easy Access', content: 'Located on main highway\nAmple free parking' }
             ].map((item, i) => (
-              <div key={i} className="address-card glass-card" style={{ padding: '40px', textAlign: 'center' }}>
-                <div className="address-icon">{item.icon}</div>
-                <h3>{item.title}</h3>
-                <p style={{ whiteSpace: 'pre-line' }}>{item.content}</p>
+              <div key={i} className="bento__card--compact" style={{ flexDirection: 'column', alignItems: 'flex-start', padding: '32px' }}>
+                <div className="bento__icon-row" style={{ marginBottom: '16px' }}>
+                  {item.icon}
+                  <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.25rem', color: 'var(--gold-100)', margin: 0 }}>{item.title}</h3>
+                </div>
+                <div style={{ paddingLeft: '42px', width: '100%' }}>
+                  <p style={{ whiteSpace: 'pre-line', fontSize: '0.88rem', color: 'var(--text-secondary)', margin: 0 }}>{item.content}</p>
+                </div>
               </div>
             ))}
           </div>

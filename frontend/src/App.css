@@ -440,23 +440,27 @@ h1, h2, h3, h4, h5, h6 {
 .form-group select,
 .form-group textarea {
   width: 100%;
-  padding: 14px 18px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  padding: 16px 20px;
+  background: rgba(6, 14, 26, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-bottom: 2px solid rgba(212, 175, 55, 0.4);
   border-radius: var(--radius-sm);
-  color: var(--text-primary);
+  color: var(--gold-50);
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
-  transition: all var(--duration-fast) var(--ease-smooth);
+  transition: all var(--duration-normal) var(--ease-luxe);
   outline: none;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: var(--gold-500);
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+  border-color: var(--gold-400);
+  background: rgba(6, 14, 26, 0.7);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--gold-400);
+  transform: translateY(-2px);
 }
 
 .form-group input::placeholder,
@@ -569,6 +573,124 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ═══════════════════════════════════════════════
+   BENTO GRID (Global)
+   ═══════════════════════════════════════════════ */
+.bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: minmax(120px, auto);
+  gap: 16px;
+}
+
+.bento__card--image {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: default;
+}
+
+.bento__card--image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s var(--ease-luxe);
+}
+
+.bento__card--image:hover img {
+  transform: scale(1.08);
+}
+
+.bento__card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(6, 14, 26, 0.9) 0%, rgba(6, 14, 26, 0.3) 40%, transparent 70%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 32px;
+}
+
+.bento__card-tag {
+  display: inline-block;
+  width: fit-content;
+  padding: 4px 14px;
+  background: rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 100px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--gold-400);
+  margin-bottom: 10px;
+}
+
+.bento__card-overlay h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.bento__card-overlay p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.bento__card--tall {
+  grid-row: span 2;
+}
+
+.bento__card--medium {
+  grid-column: span 2;
+}
+
+.bento__card--compact {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  border-radius: var(--radius-md);
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  transition: all 0.4s var(--ease-luxe);
+}
+
+.bento__card--compact:hover {
+  background: rgba(212, 175, 55, 0.04);
+  border-color: rgba(212, 175, 55, 0.25);
+  transform: translateY(-2px);
+}
+
+.bento__icon-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+}
+
+.bento__icon-row > svg {
+  color: var(--gold-500);
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.bento__icon-row h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--gold-100);
+  margin-bottom: 2px;
+  letter-spacing: 0.3px;
+}
+
+.bento__icon-row p {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* ═══════════════════════════════════════════════
    RESPONSIVE BREAKPOINTS
    ═══════════════════════════════════════════════ */
 
@@ -577,6 +699,12 @@ h1, h2, h3, h4, h5, h6 {
     --section-padding: 80px;
     --container-padding: 32px;
   }
+
+  .bento {
+    grid-template-columns: 1fr 1fr;
+  }
+  .bento__card--tall { grid-row: span 1; }
+  .bento__card--medium { grid-column: span 2; }
 
   .section-header {
     margin-bottom: 50px;
@@ -593,6 +721,12 @@ h1, h2, h3, h4, h5, h6 {
     --section-padding: 60px;
     --container-padding: 20px;
   }
+
+  .bento {
+    grid-template-columns: 1fr;
+  }
+  .bento__card--tall { grid-row: span 1; }
+  .bento__card--medium { grid-column: span 1; }
 
   .section-header .royal-heading {
     font-size: 1.8rem;

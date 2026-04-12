@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Clock, Car, Shield, Users, Wifi, Droplet } from 'lucide-react';
 import { amenities } from '../data/mock';
 import { initScrollReveal } from '../hooks/useAnimations';
 import '../styles/AmenitiesPage.css';
@@ -23,17 +24,88 @@ const AmenitiesPage = () => {
             <h2 className="royal-heading">Our Facilities</h2>
             <p className="section-subtitle">Everything you need for a comfortable stay</p>
           </div>
-          <div className="amenities-grid stagger-children">
-            {amenities.map((amenity, index) => {
-              const IconComponent = require('lucide-react')[amenity.icon];
-              return (
-                <div key={index} className="amenity-card glass-card" style={{ padding: '40px 28px', textAlign: 'center' }}>
-                  <div className="amenity-icon"><IconComponent size={40} /></div>
-                  <h3>{amenity.title}</h3>
-                  <p>{amenity.description}</p>
+          <div className="bento stagger-children">
+            {/* Front Desk & Parking — Compact */}
+            <div className="bento__card bento__card--compact">
+              <div className="bento__icon-row">
+                <Clock size={22} />
+                <div>
+                  <h4>24/7 Front Desk</h4>
+                  <p>Round-the-clock concierge service</p>
                 </div>
-              );
-            })}
+              </div>
+            </div>
+
+            <div className="bento__card bento__card--compact">
+              <div className="bento__icon-row">
+                <Car size={22} />
+                <div>
+                  <h4>Free Parking</h4>
+                  <p>Secure, ample parking space</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Medium — Room Service Image Card */}
+            <div className="bento__card bento__card--medium bento__card--image">
+              <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=800&q=80" alt="Room Service" loading="lazy" />
+              <div className="bento__card-overlay">
+                <span className="bento__card-tag">Service</span>
+                <h3>In-Room Dining</h3>
+                <p>Gourmet meals delivered to your door</p>
+              </div>
+            </div>
+
+            {/* Tall — Swimming Pool / Spa (Mock) Image Card */}
+            <div className="bento__card bento__card--tall bento__card--image">
+              <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80" alt="Resort Amenities" loading="lazy" />
+              <div className="bento__card-overlay">
+                <span className="bento__card-tag">Leisure</span>
+                <h3>Premium Leisure</h3>
+                <p>Relax and unwind with our world-class facilities and serene environment</p>
+              </div>
+            </div>
+
+            {/* Compact Icons */}
+            <div className="bento__card bento__card--compact">
+              <div className="bento__icon-row">
+                <Shield size={22} />
+                <div>
+                  <h4>CCTV & Security</h4>
+                  <p>24/7 surveillance & safety</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bento__card bento__card--compact">
+              <div className="bento__icon-row">
+                <Users size={22} />
+                <div>
+                  <h4>Family Friendly</h4>
+                  <p>Comfortable for all ages</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bento__card bento__card--compact">
+              <div className="bento__icon-row">
+                <Wifi size={22} />
+                <div>
+                  <h4>High-Speed WiFi</h4>
+                  <p>Stay seamlessly connected</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bento__card bento__card--compact">
+              <div className="bento__icon-row">
+                <Droplet size={22} />
+                <div>
+                  <h4>Hot Water 24/7</h4>
+                  <p>All-day comfort guaranteed</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

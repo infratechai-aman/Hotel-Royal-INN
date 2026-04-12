@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, Star, Calendar, Users, Award, Clock, ArrowRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Star, Calendar, Users, Award, Clock, ArrowRight, Car, Shield, Wifi, MapPin } from 'lucide-react';
 import { heroSlides, amenities, reviews, offers, galleryImages } from '../data/mock';
 import { useCountUp, initScrollReveal } from '../hooks/useAnimations';
 import '../styles/HomePage.css';
@@ -157,7 +157,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ═══════ AMENITIES / HIGHLIGHTS ═══════ */}
+      {/* ═══════ AMENITIES / HIGHLIGHTS — BENTO GRID ═══════ */}
       <section className="highlights" style={{ padding: 'var(--section-padding) 0' }}>
         <div className="container-custom">
           <div className="section-header reveal">
@@ -165,19 +165,87 @@ const HomePage = () => {
             <p className="section-subtitle">World-class amenities for discerning guests</p>
           </div>
 
-          <div className="highlights__grid stagger-children">
-            {amenities.slice(0, 6).map((amenity, index) => {
-              const IconComponent = require('lucide-react')[amenity.icon];
-              return (
-                <div key={index} className="highlights__card glass-card">
-                  <div className="highlights__icon">
-                    <IconComponent size={32} />
-                  </div>
-                  <h3>{amenity.title}</h3>
-                  <p>{amenity.description}</p>
+          <div className="bento stagger-children">
+            {/* Large — Room Image Card */}
+            <div className="bento__card bento__card--tall bento__card--image">
+              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80" alt="Luxury Suite" loading="lazy" />
+              <div className="bento__card-overlay">
+                <span className="bento__card-tag">Premium</span>
+                <h3>Luxury Suites</h3>
+                <p>King beds, premium amenities, and breathtaking comfort</p>
+              </div>
+            </div>
+
+            {/* Compact Icon Cards */}
+            <div className="bento__card bento__card--compact">
+              <div className="bento__icon-row">
+                <Clock size={22} />
+                <div>
+                  <h4>24/7 Front Desk</h4>
+                  <p>Round-the-clock concierge at your service</p>
                 </div>
-              );
-            })}
+              </div>
+            </div>
+
+            <div className="bento__card bento__card--compact">
+              <div className="bento__icon-row">
+                <Car size={22} />
+                <div>
+                  <h4>Free Valet Parking</h4>
+                  <p>Secure, well-lit parking for all guests</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Medium — Dining Image Card */}
+            <div className="bento__card bento__card--medium bento__card--image">
+              <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Fine Dining" loading="lazy" />
+              <div className="bento__card-overlay">
+                <span className="bento__card-tag">Dining</span>
+                <h3>Bar & Restaurant</h3>
+                <p>Fine dining & premium spirits</p>
+              </div>
+            </div>
+
+            <div className="bento__card bento__card--compact">
+              <div className="bento__icon-row">
+                <MapPin size={22} />
+                <div>
+                  <h4>Highway Access</h4>
+                  <p>Prime location on Pune-Nashik Highway</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bento__card bento__card--compact">
+              <div className="bento__icon-row">
+                <Shield size={22} />
+                <div>
+                  <h4>CCTV & Security</h4>
+                  <p>24/7 surveillance keeping you safe</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bento__card bento__card--compact">
+              <div className="bento__icon-row">
+                <Users size={22} />
+                <div>
+                  <h4>Family Friendly</h4>
+                  <p>Comfortable stays for all ages</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bento__card bento__card--compact">
+              <div className="bento__icon-row">
+                <Wifi size={22} />
+                <div>
+                  <h4>High-Speed WiFi</h4>
+                  <p>Stay seamlessly connected</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

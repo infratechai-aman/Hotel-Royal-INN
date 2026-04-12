@@ -13,18 +13,33 @@ const ContactPage = () => {
       </section>
       <section style={{ padding: 'var(--section-padding) 0' }}>
         <div className="container-custom">
-          <div className="contact-cards stagger-children">
+          <div className="section-header reveal">
+            <h2 className="royal-heading">Get in Touch</h2>
+            <p className="section-subtitle">We are at your service</p>
+          </div>
+          <div className="contact-bento stagger-children" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
             {[
-              { icon: <Phone size={28} />, title: 'Call Us', lines: [`Reception: ${contactInfo.phone}`, `Restaurant: ${contactInfo.restaurantPhone}`], action: { label: 'Call Now', fn: () => window.location.href = `tel:${contactInfo.phone}` } },
-              { icon: <MessageCircle size={28} />, title: 'WhatsApp', lines: ['Quick booking & queries', contactInfo.whatsapp], action: { label: 'Message Us', fn: () => window.open(`https://wa.me/${contactInfo.whatsapp.replace(/\+|\s/g, '')}`, '_blank') } },
-              { icon: <Mail size={28} />, title: 'Email', lines: ['For detailed inquiries', contactInfo.email], action: { label: 'Send Email', href: `mailto:${contactInfo.email}` } },
-              { icon: <Clock size={28} />, title: 'Hours', lines: ['24/7 Reception', 'Restaurant: 7 AM - 11 PM', 'Bar: 11 AM - 1 AM'] }
+              { icon: <Phone size={24} />, title: 'Call Us', lines: [`Reception: ${contactInfo.phone}`, `Restaurant: ${contactInfo.restaurantPhone}`], action: { label: 'Call Now', fn: () => window.location.href = `tel:${contactInfo.phone}` } },
+              { icon: <MessageCircle size={24} />, title: 'WhatsApp', lines: ['Quick booking & queries', contactInfo.whatsapp], action: { label: 'Message Us', fn: () => window.open(`https://wa.me/${contactInfo.whatsapp.replace(/\+|\s/g, '')}`, '_blank') } },
+              { icon: <Mail size={24} />, title: 'Email', lines: ['For detailed inquiries', contactInfo.email], action: { label: 'Send Email', href: `mailto:${contactInfo.email}` } },
+              { icon: <Clock size={24} />, title: 'Hours', lines: ['24/7 Reception', 'Restaurant: 7 AM - 11 PM', 'Bar: 11 AM - 1 AM'] }
             ].map((card, i) => (
-              <div key={i} className="contact-info-card glass-card" style={{ padding: '36px', textAlign: 'center' }}>
-                <div className="contact-info-icon">{card.icon}</div>
-                <h3>{card.title}</h3>
-                {card.lines.map((line, j) => <p key={j} style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginBottom: '4px' }}>{line}</p>)}
-                {card.action && (card.action.href ? <a href={card.action.href} className="btn-gold" style={{ marginTop: '16px', padding: '10px 24px', fontSize: '0.75rem' }}>{card.action.label}</a> : <button className="btn-gold" onClick={card.action.fn} style={{ marginTop: '16px', padding: '10px 24px', fontSize: '0.75rem' }}>{card.action.label}</button>)}
+              <div key={i} className="bento__card--compact" style={{ flexDirection: 'column', alignItems: 'flex-start', padding: '32px' }}>
+                <div className="bento__icon-row" style={{ marginBottom: '16px' }}>
+                  {card.icon}
+                  <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.25rem', color: 'var(--gold-100)', margin: 0 }}>{card.title}</h3>
+                </div>
+                <div style={{ paddingLeft: '42px', width: '100%' }}>
+                  {card.lines.map((line, j) => <p key={j} style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginBottom: '6px' }}>{line}</p>)}
+                  {card.action && (
+                    <div style={{ marginTop: '20px' }}>
+                      {card.action.href ? 
+                        <a href={card.action.href} className="btn-outline" style={{ display: 'inline-block', padding: '8px 20px', fontSize: '0.75rem', borderColor: 'rgba(212,175,55,0.3)' }}>{card.action.label}</a> : 
+                        <button className="btn-outline" onClick={card.action.fn} style={{ padding: '8px 20px', fontSize: '0.75rem', borderColor: 'rgba(212,175,55,0.3)' }}>{card.action.label}</button>
+                      }
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </div>

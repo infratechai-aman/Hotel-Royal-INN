@@ -31,7 +31,9 @@ const BlogPage = () => {
             <h2 className="royal-heading" style={{ marginBottom: '12px' }}>Subscribe to Our Newsletter</h2>
             <p style={{ color: 'var(--text-secondary)', marginBottom: '32px' }}>Get the latest updates on events, offers, and news</p>
             <form className="newsletter-form" style={{ display: 'flex', gap: '12px', maxWidth: '500px', margin: '0 auto' }}>
-              <input type="email" placeholder="Enter your email address" required style={{ flex: 1, padding: '14px 18px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(212,175,55,0.2)', borderRadius: '4px', color: 'var(--text-primary)', fontFamily: 'Inter, sans-serif', fontSize: '0.95rem', outline: 'none' }} />
+              <div className="form-group" style={{ margin: 0, flex: 1 }}>
+                <input type="email" placeholder="Enter your email address" required />
+              </div>
               <button type="submit" className="btn-gold">Subscribe</button>
             </form>
           </div>
