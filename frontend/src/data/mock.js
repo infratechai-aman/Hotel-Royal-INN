@@ -268,9 +268,9 @@ export const faqs = [
 ];
 
 export const contactInfo = {
-  phone: "+91 98765 43210",
-  restaurantPhone: "+91 98765 43211",
-  whatsapp: "+91 98765 43210",
+  phone: "+91 99225 51414",
+  restaurantPhone: "+91 99225 51414",
+  whatsapp: "+91 99225 51414",
   email: "info@royalinn.com",
   address: "Pune-Nashik Highway, Opposite Highway Industries, Kurali, Maharashtra",
   hours: "24/7 Reception | Restaurant: 7 AM - 11 PM | Bar: 11 AM - 1 AM",

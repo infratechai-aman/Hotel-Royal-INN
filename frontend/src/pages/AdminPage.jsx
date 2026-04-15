@@ -191,7 +191,7 @@ const AdminPage = () => {
                   </div>
                   <div className="form-group">
                     <label>Contact Phone</label>
-                    <input type="tel" defaultValue="+91 98765 43210" />
+                    <input type="tel" defaultValue="+91 99225 51414" />
                   </div>
                   <div className="form-group">
                     <label>Email Address</label>
